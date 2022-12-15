@@ -1,0 +1,11 @@
+FROM xserrat/facebook-demucs:latest
+
+RUN pip3 install --upgrade redis jsonpickle requests flask minio
+
+COPY rest-server.py  /app/rest-server.py
+
+WORKDIR /app
+
+ENV	FLASK_PORT 5000
+
+ENTRYPOINT	[ "python3", "-u", "rest-server.py" ]
